@@ -1,0 +1,485 @@
+/* Global Styles */
+:root {
+    --primary-color: #e94e7c; /* Changed from #ff6a00 to pink/magenta */
+    --secondary-color: #27ae60;
+    --dark-color: #333;
+    --light-color: #f4f4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 76px; /* Accounting for fixed navbar */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #d13e6a; /* Darker shade of primary color for hover */
+}
+
+.btn {
+    border-radius: 30px;
+    padding: 8px 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-danger:hover {
+    background-color: #d13e6a; /* Darker shade of primary color */
+    border-color: #d13e6a;
+}
+
+/* === Custom Dark Navbar === */
+.navbar {
+    background-color: #222 !important; /* Ganti latar belakang navbar jadi gelap */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sedikit lebih kuat bayangannya */
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* Warna font putih */
+    font-weight: 500;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: var(--primary-color) !important; /* Saat hover, pakai warna utama */
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #333; /* Dropdown background gelap */
+    border: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.navbar-nav .dropdown-item {
+    color: #fff;
+}
+
+.navbar-nav .dropdown-item:hover {
+    background-color: #444;
+    color: var(--primary-color);
+}
+
+/* Tombol CTA di Navbar tetap terlihat */
+.cta-link {
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 30px;
+    padding: 8px 20px !important;
+    margin-left: 10px;
+}
+
+.cta-link:hover {
+    background-color: #d13e6a; /* Darker shade of primary color */
+}
+
+
+/* Hero Carousel */
+#hero-carousel {
+    margin-top: -76px; /* To offset the fixed navbar padding */
+}
+
+#hero-carousel .carousel-item {
+    height: 80vh;
+    min-height: 500px;
+    background-position: center;
+    background-size: cover;
+}
+
+#hero-carousel .carousel-item img {
+    object-fit: cover;
+    height: 80vh;
+    min-height: 500px;
+    width: 100%;
+}
+
+#hero-carousel .carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    bottom: 20%;
+}
+
+#hero-carousel .carousel-caption h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+#hero-carousel .carousel-caption p {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+#hero-carousel .carousel-indicators {
+    bottom: 10%;
+}
+
+#hero-carousel .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+/* WhatsApp CTA */
+#whatsapp-cta {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+
+
+
+/* Services Section */
+#services h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+#services h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+.service-card {
+    padding: 30px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.service-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.service-icon-wrap {
+    width: 120px;
+    height: 120px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon-wrap {
+    background-color: #f9e6ee; /* Light pink background for hover */
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.service-card h4 {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Student Works Section */
+#student-works {
+    background-color: #f8f9fa;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+}
+
+footer h5 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+footer h5::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer .social-icons a {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: #f8f9fa;
+}
+
+.testimonial-image img {
+    border: 3px solid #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* News Section */
+#news .card {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#news .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#news .card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
+
+#news .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#news .card-text {
+    color: #666;
+}
+
+/* About Page Styles */
+#about-header h1 {
+    line-height: 1.2;
+}
+
+#about-header span {
+    color: var(--primary-color);
+}
+
+.service-icon-about {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* About Preview Section */
+#about-preview h3 {
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+#about-preview h3 span {
+    color: var(--primary-color);
+}
+
+#about-preview .service-icon-about {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#about-preview h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#about-preview p.small {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}
+
+/* Team Section */
+#our-teams .team-info {
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Contact Page Styles */
+#contact-form {
+    background-color: var(--primary-color); /* Changed from green to primary pink */
+}
+
+#contact-info i {
+    display: block;
+    margin: 0 auto 15px;
+}
+
+#contact-info a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#contact-info a:hover {
+    color: var(--primary-color);
+}
+
+.social-media-icons a {
+    display: inline-block;
+    margin: 0 5px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-media-icons a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #hero-carousel .carousel-item {
+        height: 60vh;
+    }
+
+    #hero-carousel .carousel-caption {
+        bottom: 15%;
+    }
+
+    #hero-carousel .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+
+    #hero-carousel .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    #about-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .service-icon-about {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    #hero-carousel .carousel-item {
+        height: 50vh;
+    }
+
+    #hero-carousel .carousel-caption {
+        bottom: 10%;
+        padding: 15px;
+    }
+
+    #hero-carousel .carousel-caption h1 {
+        font-size: 1.5rem;
+    }
+
+
+    .service-card {
+        margin-bottom: 30px;
+    }
+
+    #about-header h1 {
+        font-size: 2rem;
+    }
+
+    #news .card-img-top {
+        height: 150px;
+    }
+
+    #contact-info .col-md-3 {
+        margin-bottom: 30px;
+    }
+}
+/* Contact page specific styles */
+#contact-section .card {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#contact-section .card:hover {
+    transform: translateY(-5px);
+}
+
+#contact-section .text-danger {
+    color: var(--primary-color) !important;
+}
+
+#contact-section .btn-danger {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#contact-section .btn-danger:hover {
+    background-color: #d13e6a;
+    border-color: #d13e6a;
+}
+
+#contact-header {
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/bg-contact.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#contact-whatsapp-cta .btn-success {
+    background-color: #25D366;
+    border-color: #25D366;
+}
+
+#contact-whatsapp-cta .btn-success:hover {
+    background-color: #1fba57;
+    border-color: #1fba57;
+}
