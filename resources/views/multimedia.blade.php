@@ -76,88 +76,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Services Section -->
-    <section id="multimedia-services" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Layanan IT dan Multimedia Kami</h2>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-camera-video-fill fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Video Production</h3>
-                            <p class="card-text">Layanan produksi video profesional untuk konten marketing, company profile, tutorial, event, dan kebutuhan promosi lainnya.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-brush-fill fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Desain Grafis</h3>
-                            <p class="card-text">Jasa desain profesional untuk branding, marketing materials, sosial media, UI/UX, hingga kebutuhan cetak berkualitas tinggi.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-display fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Animasi & Motion Graphics</h3>
-                            <p class="card-text">Pembuatan animasi menarik dan motion graphics untuk menjelaskan produk, konsep, atau meningkatkan engagement konten Anda.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-ear-fill fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Audio Production</h3>
-                            <p class="card-text">Layanan rekaman dan editing audio untuk podcast, voice over, jingle iklan, dan kebutuhan audio lainnya dengan kualitas studio.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-hdd-network-fill fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Infrastruktur IT</h3>
-                            <p class="card-text">Solusi infrastruktur IT terpadu termasuk jaringan, server, keamanan data, dan sistem penyimpanan untuk mendukung operasional bisnis.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="service-icon mb-3">
-                                <i class="bi bi-phone-fill fs-1" style="color: var(--primary-color);"></i>
-                            </div>
-                            <h3 class="card-title h5 fw-bold">Aplikasi & Software Development</h3>
-                            <p class="card-text">Pengembangan aplikasi mobile, desktop, dan software khusus untuk mengotomatisasi dan meningkatkan efisiensi proses bisnis Anda.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section -->
     <section id="service-faq" class="py-5">
         <div class="container">
@@ -227,49 +145,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Preview Section -->
-    <section id="portfolio-preview" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Portfolio Pilihan</h2>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="portfolio-item shadow-sm rounded overflow-hidden">
-                        <img src="../images/portfolio/multimedia-1.jpg" class="img-fluid w-100" alt="Portfolio item">
-                        <div class="p-3">
-                            <h5 class="fw-bold">Company Profile PT Tekno Maju</h5>
-                            <p class="mb-0 text-muted">Video Production, Motion Graphics</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="portfolio-item shadow-sm rounded overflow-hidden">
-                        <img src="../images/portfolio/multimedia-2.jpg" class="img-fluid w-100" alt="Portfolio item">
-                        <div class="p-3">
-                            <h5 class="fw-bold">Redesign Sistem IT Bank BCD</h5>
-                            <p class="mb-0 text-muted">IT Infrastructure, Network Security</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="portfolio-item shadow-sm rounded overflow-hidden">
-                        <img src="../images/portfolio/multimedia-3.jpg" class="img-fluid w-100" alt="Portfolio item">
-                        <div class="p-3">
-                            <h5 class="fw-bold">Aplikasi Mobile Startup HealthTech</h5>
-                            <p class="mb-0 text-muted">App Development, UI/UX Design</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-5">
-                <a href="/portfolio" class="btn btn-outline-dark">Lihat Semua Portfolio</a>
             </div>
         </div>
     </section>
