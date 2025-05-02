@@ -10,6 +10,7 @@ use App\Http\Controllers\WebDevelopmentController;
 use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\MobileAppController;
 use App\Http\Controllers\DigitalMarketingController;
+use App\Http\Controllers\KomputerAkuntansiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::get('/web-development', [WebDevelopmentController::class, 'index'])->name
 Route::get('/multimedia', [MultimediaController::class, 'index'])->name('multimedia');
 Route::get('/mobile-app', [MobileAppController::class, 'index'])->name('mobile-app');
 Route::get('/digital-marketing', [DigitalMarketingController::class, 'index'])->name('digital-marketing');
+Route::get('/komputer-akuntansi', [KomputerAkuntansiController::class, 'index'])->name('komputer-akuntansi');
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Hanya satu route submit
