@@ -6,7 +6,8 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\WebDevelopmentController; // Import controller baru
+use App\Http\Controllers\WebDevelopmentController;
+use App\Http\Controllers\MultimediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::get('/testimonials', [TestimonialController::class, 'index'])->name('test
 // Web Development Route
 Route::get('/web-development', [WebDevelopmentController::class, 'index'])->name('web-development');
 
+Route::get('/multimedia', [MultimediaController::class, 'index'])->name('multimedia');
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Hanya satu route submit
