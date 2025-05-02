@@ -20,7 +20,7 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <h5 class="text-uppercase fw-bold">Navigasi</h5>
                 <div class="colored-line mt-2 mb-3"></div>
                 <ul class="list-unstyled footer-links">
@@ -36,43 +36,54 @@
                                 class="fas fa-chevron-right me-2 small"></i>Kontak</a></li>
                 </ul>
             </div>
+
             <!-- Contact Info -->
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-5 col-md-6">
                 <h5 class="text-uppercase fw-bold">Hubungi Kami</h5>
                 <div class="colored-line mt-2 mb-3"></div>
                 <div class="contact-info">
-                    <div class="d-flex mb-3">
-                        <div class="contact-icon me-3">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0">Jalan Contoh No. 123, Kota</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p class="mb-0">Jalan Contoh No. 123, Kota</p>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0">0821-3131-4040</p>
+                                    <p class="mb-0">0821-3131-0210</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <div class="contact-icon me-3">
-                            <i class="fas fa-phone-alt"></i>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0">info@DevXpertmedia.id</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <p class="mb-0">0821-3131-4040</p>
-                            <p class="mb-0">0821-3131-0210</p>
-                        </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <div class="contact-icon me-3">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <p class="mb-0">info@DevXpertmedia.id</p>
-                        </div>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <div class="contact-icon me-3">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <p class="mb-0">Senin - Jumat: 09:00 - 17:00</p>
-                            <p class="mb-0">Sabtu: 09:00 - 15:00</p>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0">Senin - Jumat: 09:00 - 17:00</p>
+                                    <p class="mb-0">Sabtu: 09:00 - 15:00</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,7 +106,7 @@
         <div class="footer-divider my-4"></div>
 
         <!-- Bottom Footer -->
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-md-6 mb-3 mb-md-0">
                 <p class="mb-0">&copy; {{ date('Y') }} DevXpert Media. All Rights Reserved.</p>
             </div>
@@ -159,13 +170,17 @@
     }
 
     .contact-icon {
-        width: 35px;
+        min-width: 35px;
         height: 35px;
         background: rgba(255, 255, 255, 0.1);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .contact-info .d-flex {
+        height: 100%;
     }
 
     .footer-map-container {
@@ -191,18 +206,35 @@
         color: var(--primary-color);
     }
 
-    .footer-bottom-links li:not(:last-child) {
+    .footer-bottom-links .list-inline-item:not(:last-child) {
         border-right: 1px solid rgba(255, 255, 255, 0.2);
+        margin-right: 0;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 991px) {
+        .contact-info .row {
+            margin-right: -5px;
+            margin-left: -5px;
+        }
+
+        .contact-info [class*="col-"] {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+    }
+
+    @media (max-width: 767px) {
         .footer-bottom-links {
             text-align: center;
             margin-top: 15px;
         }
 
-        .footer-bottom-links li {
-            margin-bottom: 5px;
+        .contact-info .col-md-6 {
+            margin-bottom: 15px;
+        }
+
+        .col-md-6.text-md-end {
+            text-align: center !important;
         }
     }
 </style>
