@@ -8,6 +8,6 @@ class KomputerAkuntansiController extends Controller
 {
     public function index()
     {
-        return view('mobile-app');
+        return view('komputer-akuntansi');
     }
 }
