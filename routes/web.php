@@ -9,6 +9,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WebDevelopmentController;
 use App\Http\Controllers\MultimediaController;
 use App\Http\Controllers\MobileAppController;
+use App\Http\Controllers\DigitalMarketingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::get('/web-development', [WebDevelopmentController::class, 'index'])->name
 
 Route::get('/multimedia', [MultimediaController::class, 'index'])->name('multimedia');
 Route::get('/mobile-app', [MobileAppController::class, 'index'])->name('mobile-app');
+Route::get('/digital-marketing', [DigitalMarketingController::class, 'index'])->name('digital-marketing');
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Hanya satu route submit
