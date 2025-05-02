@@ -5,7 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\TestimonialController; // Memastikan controller terimport dengan benar
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\WebDevelopmentController; // Import controller baru
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/vision-mission', [HomeController::class, 'visionMission'])->name('v
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
 
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials');
+
+// Web Development Route
+Route::get('/web-development', [WebDevelopmentController::class, 'index'])->name('web-development');
 
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
