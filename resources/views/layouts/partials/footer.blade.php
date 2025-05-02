@@ -36,25 +36,6 @@
                                 class="fas fa-chevron-right me-2 small"></i>Kontak</a></li>
                 </ul>
             </div>
-
-            <!-- Services -->
-            <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase fw-bold">Layanan</h5>
-                <div class="colored-line mt-2 mb-3"></div>
-                <ul class="list-unstyled footer-links">
-                    <li class="mb-2"><a href="#" class="footer-link"><i
-                                class="fas fa-chevron-right me-2 small"></i>Kursus IT</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link"><i
-                                class="fas fa-chevron-right me-2 small"></i>Desain Grafis</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link"><i
-                                class="fas fa-chevron-right me-2 small"></i>Web Development</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link"><i
-                                class="fas fa-chevron-right me-2 small"></i>Mobile Apps</a></li>
-                    <li class="mb-2"><a href="#" class="footer-link"><i
-                                class="fas fa-chevron-right me-2 small"></i>Branding</a></li>
-                </ul>
-            </div>
-
             <!-- Contact Info -->
             <div class="col-lg-4 col-md-12">
                 <h5 class="text-uppercase fw-bold">Hubungi Kami</h5>
