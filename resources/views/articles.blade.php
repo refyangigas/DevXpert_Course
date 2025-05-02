@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="featured-article-card bg-dark text-white position-relative rounded-3 overflow-hidden">
-                            <img src="{{ asset($featured->featured_image) }}" alt="{{ $featured->title }}"
+                            <img src="{{ asset('storage/' . $featured->featured_image) }}" alt="{{ $featured->title }}"
                                 class="w-100 opacity-50" style="height: 400px; object-fit: cover;">
                             <div class="featured-content position-absolute bottom-0 p-4 p-md-5 w-100">
                                 <span class="badge" style="background-color: var(--primary-color);">
@@ -47,8 +47,8 @@
                                 <h2 class="mt-2 mb-3">{{ $featured->title }}</h2>
                                 <p class="mb-3 d-none d-md-block">{{ $featured->excerpt }}</p>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset($featured->author_image) }}" alt="{{ $featured->author_name }}"
-                                        class="rounded-circle me-2" width="40">
+                                    <img src="{{ asset('storage/' . $featured->author_image) }}"
+                                        alt="{{ $featured->author_name }}" class="rounded-circle me-2" width="40">
                                     <div>
                                         <p class="mb-0 small">Oleh: {{ $featured->author_name }}</p>
                                         <p class="mb-0 small text-light">{{ $featured->published_at->format('d F Y') }} •
@@ -103,8 +103,9 @@
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card h-100 border-0 shadow-sm article-card">
                                         <div class="position-relative">
-                                            <img src="{{ asset($article->featured_image) }}" class="card-img-top"
-                                                alt="{{ $article->title }}" style="height: 200px; object-fit: cover;">
+                                            <img src="{{ asset('storage/' . $article->featured_image) }}"
+                                                class="card-img-top" alt="{{ $article->title }}"
+                                                style="height: 200px; object-fit: cover;">
                                             <span class="badge position-absolute top-0 end-0 m-2"
                                                 style="background-color: var(--primary-color);">
                                                 {{ $article->category ? $article->category->name : 'Artikel' }}

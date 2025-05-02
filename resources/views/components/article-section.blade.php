@@ -18,7 +18,9 @@
                 <div class="col-md-4">
                     <div class="card h-100 border-0 shadow-sm article-card">
                         <div class="position-relative">
-                            <img src="{{ asset($article->featured_image && file_exists(public_path($article->featured_image)) ? $article->featured_image : 'images/placeholder.jpg') }}"
+                            <img src="{{ $article->featured_image && Storage::disk('public')->exists($article->featured_image)
+                                ? asset('storage/' . $article->featured_image)
+                                : asset('images/placeholder.jpg') }}"
                                 class="card-img-top" alt="{{ $article->title }}"
                                 style="height: 200px; object-fit: cover;">
                             <span class="badge position-absolute top-0 end-0 m-2"

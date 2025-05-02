@@ -25,8 +25,8 @@
                     <h1 class="display-5 fw-bold mb-3">{{ $article->title }}</h1>
 
                     <div class="d-flex align-items-center mb-4">
-                        <img src="{{ asset($article->author_image) }}" alt="{{ $article->author_name }}"
-                            class="rounded-circle me-3" width="50">
+                        <img src="{{ asset('storage/' . $article->author_image) }}" alt="{{ $article->author_name }}"
+                            class="rounded-circle" width="100">
                         <div>
                             <h6 class="mb-0">{{ $article->author_name }}</h6>
                             <div class="d-flex align-items-center">
@@ -59,8 +59,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <!-- Featured Image -->
-                    <img src="{{ asset($article->featured_image) }}" alt="{{ $article->title }}"
+                    <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}"
                         class="img-fluid rounded mb-4 w-100" style="max-height: 500px; object-fit: cover;">
+
 
                     <!-- Article Text -->
                     <div class="article-text">
@@ -87,8 +88,8 @@
                     <!-- Author Box -->
                     <div class="author-box d-flex p-4 my-5 bg-light rounded">
                         <div class="author-avatar me-3">
-                            <img src="{{ asset($article->author_image) }}" alt="{{ $article->author_name }}"
-                                class="rounded-circle" width="100">
+                            <img src="{{ asset('storage/' . $article->author_image) }}" alt="{{ $article->author_name }}"
+                                class="rounded-circle me-3" width="50">
                         </div>
                         <div class="author-info">
                             <h5 class="mb-1">{{ $article->author_name }}</h5>
@@ -114,8 +115,8 @@
                                 @foreach ($relatedArticles as $relatedArticle)
                                     <div class="col-md-6">
                                         <div class="card h-100 border-0 shadow-sm">
-                                            <img src="{{ asset($relatedArticle->featured_image) }}" class="card-img-top"
-                                                alt="{{ $relatedArticle->title }}"
+                                            <img src="{{ asset('storage/' . $relatedArticle->featured_image) }}"
+                                                class="card-img-top" alt="{{ $relatedArticle->title }}"
                                                 style="height: 180px; object-fit: cover;">
                                             <div class="card-body">
                                                 <h5 class="card-title">{{ $relatedArticle->title }}</h5>
@@ -179,7 +180,7 @@
                                         <!-- Popular Post -->
                                         <div class="d-flex mb-3">
                                             <div class="flex-shrink-0">
-                                                <img src="{{ asset($popularArticle->featured_image) }}"
+                                                <img src="{{ asset('storage/' . $popularArticle->featured_image) }}"
                                                     alt="{{ $popularArticle->title }}" class="rounded" width="70"
                                                     height="70" style="object-fit: cover;">
                                             </div>

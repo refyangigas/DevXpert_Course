@@ -169,7 +169,7 @@
             <div class="container text-center text-white py-5">
                 <div class="animate-zoom-in">
                     <h2 class="display-4 fw-bold">DAPATKAN PROMO SPESIAL BULAN INI</h2>
-                    <h3 class="mb-4">INFO: 082131314040 / 082131310210</h3>
+                    <h3 class="mb-4">INFO: 081234567890 / 082314556666</h3>
                 </div>
             </div>
         </div>
