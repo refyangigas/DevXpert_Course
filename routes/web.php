@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\WebDevelopmentController;
 use App\Http\Controllers\MultimediaController;
+use App\Http\Controllers\MobileAppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::get('/testimonials', [TestimonialController::class, 'index'])->name('test
 Route::get('/web-development', [WebDevelopmentController::class, 'index'])->name('web-development');
 
 Route::get('/multimedia', [MultimediaController::class, 'index'])->name('multimedia');
+Route::get('/mobile-app', [MobileAppController::class, 'index'])->name('mobile-app');
 // Contact Route
 Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Hanya satu route submit
