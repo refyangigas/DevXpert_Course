@@ -17,101 +17,69 @@
             <div class="col-lg-7">
                 <div id="testimonial-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <!-- Testimonial 1 -->
-                        <div class="carousel-item active">
-                            <div class="testimonial-card p-4 bg-dark border border-2"
-                                style="border-color: var(--primary-color) !important;">
-                                <div class="row">
-                                    <div class="col-md-4 mb-3 mb-md-0">
-                                        <div class="testimonial-image text-center">
-                                            <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}"
-                                                alt="Testimonial 1" class="rounded-circle" width="100">
-                                            <h5 class="mt-3 mb-0" style="color: var(--primary-color);">Nico Robin</h5>
-                                            <p class="small">Desain Grafis</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-rating mb-3">
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
+                        @forelse($homeTestimonials as $index => $testimonial)
+                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                <div class="testimonial-card p-4 bg-dark border border-2"
+                                    style="border-color: var(--primary-color) !important;">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3 mb-md-0">
+                                            <div class="testimonial-image text-center">
+                                                @if($testimonial->image ?? null)
+                                                    <img src="{{ asset('storage/' . $testimonial->image) }}"
+                                                        alt="{{ $testimonial->name }}" class="rounded-circle" width="100">
+                                                @else
+                                                    <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}"
+                                                        alt="{{ $testimonial->name ?? 'Default' }}" class="rounded-circle" width="100">
+                                                @endif
+                                                <h5 class="mt-3 mb-0" style="color: var(--primary-color);">{{ $testimonial->name ?? 'Sample Name' }}</h5>
+                                                <p class="small">{{ $testimonial->position ?? 'Sample Position' }}</p>
                                             </div>
-                                            <p class="fst-italic">"Pelatihan di Creative Media sangat membantu saya
-                                                mengembangkan keterampilan desain grafis. Pengajarnya profesional dan
-                                                sabar dalam membimbing. Saya sekarang bekerja sebagai desainer berkat
-                                                ilmu yang saya dapatkan di sini."</p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="testimonial-content">
+                                                <div class="testimonial-rating mb-3">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        @php
+                                                            $rating = $testimonial->rating ?? 5;
+                                                        @endphp
+                                                        <i class="fas fa-{{ $i <= $rating ? 'star' : ($i - 0.5 <= $rating ? 'star-half-alt' : 'star') }}" style="color: #FFD700;"></i>
+                                                    @endfor
+                                                </div>
+                                                <p class="fst-italic">"{{ $testimonial->content ?? 'Belum ada testimonial saat ini. Silahkan tambahkan testimonial melalui panel admin.' }}"</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Testimonial 2 -->
-                        <div class="carousel-item">
-                            <div class="testimonial-card p-4 bg-dark border border-2"
-                                style="border-color: var(--primary-color) !important;">
-                                <div class="row">
-                                    <div class="col-md-4 mb-3 mb-md-0">
-                                        <div class="testimonial-image text-center">
-                                            <img src="{{ asset('images/testimonials/testimonial-2.png') }}"
-                                                alt="Testimonial 2" class="rounded-circle" width="100">
-                                            <h5 class="mt-3 mb-0" style="color: var(--primary-color);">Linda Wijaya</h5>
-                                            <p class="small">Web Development</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-rating mb-3">
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star-half-alt" style="color: #FFD700;"></i>
+                        @empty
+                            <div class="carousel-item active">
+                                <div class="testimonial-card p-4 bg-dark border border-2"
+                                    style="border-color: var(--primary-color) !important;">
+                                    <div class="row">
+                                        <div class="col-md-4 mb-3 mb-md-0">
+                                            <div class="testimonial-image text-center">
+                                                <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}"
+                                                    alt="Default" class="rounded-circle" width="100">
+                                                <h5 class="mt-3 mb-0" style="color: var(--primary-color);">Sample Name</h5>
+                                                <p class="small">Sample Position</p>
                                             </div>
-                                            <p class="fst-italic">"Website yang dikembangkan oleh tim Creative Media
-                                                sangat membantu bisnis kami. Tampilan yang profesional dan responsif
-                                                membuat pengunjung website kami meningkat 200% dalam 3 bulan pertama
-                                                setelah peluncuran."</p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="testimonial-content">
+                                                <div class="testimonial-rating mb-3">
+                                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                                    <i class="fas fa-star" style="color: #FFD700;"></i>
+                                                </div>
+                                                <p class="fst-italic">"Belum ada testimonial saat ini. Silahkan tambahkan testimonial melalui panel admin."</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Testimonial 3 -->
-                        <div class="carousel-item">
-                            <div class="testimonial-card p-4 bg-dark border border-2"
-                                style="border-color: var(--primary-color) !important;">
-                                <div class="row">
-                                    <div class="col-md-4 mb-3 mb-md-0">
-                                        <div class="testimonial-image text-center">
-                                            <img src="{{ asset('images/testimonials/testimonial-3.jpg') }}"
-                                                alt="Testimonial 3" class="rounded-circle" width="100">
-                                            <h5 class="mt-3 mb-0" style="color: var(--primary-color);">Ahmad Faisal</h5>
-                                            <p class="small">Programming</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-rating mb-3">
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                            </div>
-                                            <p class="fst-italic">"Berbeda dengan tempat kursus lainnya, Creative Media
-                                                benar-benar memberikan jaminan sampai bisa. Saya yang awalnya gagap
-                                                teknologi kini mampu membuat aplikasi sederhana berkat kesabaran para
-                                                pengajar."</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
 
                     <!-- Controls -->

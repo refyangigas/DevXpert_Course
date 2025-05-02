@@ -52,7 +52,7 @@
                 <div class="carousel-caption">
                     <h1>Artikel & Tips Terbaru</h1>
                     <p>Pelajari tren dan perkembangan terbaru dalam dunia IT & Multimedia</p>
-                    <a href="{{ route('articles') }}" class="btn btn-lg mt-3"
+                    <a href="{{ route('articles.index') }}" class="btn btn-lg mt-3"
                         style="background-color: var(--primary-color); color: white;">Baca Artikel</a>
                 </div>
             </div>

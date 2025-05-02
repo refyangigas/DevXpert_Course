@@ -3,27 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
-    /**
-     * Handle contact form submission
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+    public function index()
+    {
+        return view('contact');
+    }
+
     public function submit(Request $request)
     {
-        // Validate form data
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'subject' => 'required|string|max:255',
-            'message' => 'required|string'
+            'message' => 'required|string',
         ]);
+
+        $validated['is_read'] = false;
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -31,22 +31,26 @@ class ContactController extends Controller
                 ->withInput();
         }
 
-        // Get form data
-        $contactData = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message
-        ];
+        try {
+            // Simpan ke database
+            Contact::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'message' => $request->message,
+            ]);
 
-        // In a real application, you would send email here
-        // Mail::to('cs@creativemedia.id')->send(new ContactFormMail($contactData));
+            // Redirect kembali ke halaman kontak dengan pesan sukses
+            return redirect()->route('contact')
+                ->with('success', 'Pesan Anda berhasil terkirim. Kami akan menghubungi Anda segera.');
+        } catch (\Exception $e) {
+            // Log error jika diperlukan
+            // \Log::error('Contact form error: ' . $e->getMessage());
 
-        // For demonstration, we'll just save to database
-        // You would need to create a Contact model and migration for this
-        // Contact::create($contactData);
-
-        // For now, just redirect with success message
-        return redirect()->back()->with('success', 'Terima kasih telah menghubungi kami. Kami akan segera meresponnya!');
+            // Redirect dengan pesan error
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan. Silakan coba beberapa saat lagi.')
+                ->withInput();
+        }
     }
 }

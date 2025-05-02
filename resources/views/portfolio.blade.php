@@ -47,240 +47,53 @@
                 </div>
             </div>
 
-            <div class="row portfolio-container g-4" id="portfolioGrid">
-                <!-- Portfolio Item 1 -->
-                <div class="col-md-6 col-lg-4 portfolio-item web-design">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 1">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>E-Commerce Website</h5>
-                                    <p class="text-white mb-0">Web Design</p>
-                                    <a href="#portfolioModal1" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
+                @forelse($portfolios ?? [] as $portfolio)
+                    <div class="col-md-6 col-lg-4 portfolio-item {{ $portfolio->category }}">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="portfolio-img position-relative overflow-hidden">
+                                <img src="{{ asset('storage/' . $portfolio->image) }}" class="card-img-top"
+                                    alt="{{ $portfolio->title }}">
+                                <div class="portfolio-overlay d-flex align-items-center justify-content-center">
+                                    <div class="portfolio-info text-center p-3">
+                                        <h5>{{ $portfolio->title }}</h5>
+                                        <p class="text-white mb-0">{{ $portfolio->getCategoryNameAttribute() }}</p>
+                                        <a href="#portfolioModal{{ $portfolio->id }}" data-bs-toggle="modal"
+                                            class="btn btn-light btn-sm mt-2">
+                                            <i class="fas fa-eye me-1"></i> Detail
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">E-Commerce Fashion Website</h5>
-                            <p class="card-text text-muted small">Karya: Budi Santoso | Angkatan: 2024</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">HTML</span>
-                                    <span class="badge bg-light text-dark me-1">CSS</span>
-                                    <span class="badge bg-light text-dark">JavaScript</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2 -->
-                <div class="col-md-6 col-lg-4 portfolio-item graphic-design">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 2">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>Branding Project</h5>
-                                    <p class="text-white mb-0">Desain Grafis</p>
-                                    <a href="#portfolioModal2" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Branding untuk Kafe Lokal</h5>
-                            <p class="card-text text-muted small">Karya: Siti Nurhaliza | Angkatan: 2023</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">Photoshop</span>
-                                    <span class="badge bg-light text-dark me-1">Illustrator</span>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $portfolio->title }}</h5>
+                                <p class="card-text text-muted small">Karya: {{ $portfolio->student_name }} | Angkatan:
+                                    {{ $portfolio->batch ?? '-' }}</p>
+                                <div class="d-flex align-items-center mt-2">
+                                    <div class="portfolio-tech">
+                                        @if ($portfolio->technologies)
+                                            @foreach ($portfolio->technologies as $tech)
+                                                <span class="badge bg-light text-dark me-1">{{ $tech }}</span>
+                                            @endforeach
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                @endforelse
 
-                <!-- Portfolio Item 3 -->
-                <div class="col-md-6 col-lg-4 portfolio-item ui-ux">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 3">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>Travel App UI Design</h5>
-                                    <p class="text-white mb-0">UI/UX Design</p>
-                                    <a href="#portfolioModal3" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Travel App UI Design</h5>
-                            <p class="card-text text-muted small">Karya: Ahmad Rizky | Angkatan: 2024</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">Figma</span>
-                                    <span class="badge bg-light text-dark">Adobe XD</span>
-                                </div>
-                            </div>
+                <!-- Load More Button (Hanya ditampilkan jika ada portfolio dan jumlahnya lebih dari 6) -->
+                @if (isset($portfolios) && $portfolios->count() > 6)
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <button id="loadMoreBtn" class="btn btn-lg"
+                                style="background-color: var(--primary-color); color: white;">
+                                Lihat Lebih Banyak <i class="fas fa-arrow-down ms-2"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <!-- Portfolio Item 4 -->
-                <div class="col-md-6 col-lg-4 portfolio-item mobile-app">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 4">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>Aplikasi Belajar Online</h5>
-                                    <p class="text-white mb-0">Mobile App Development</p>
-                                    <a href="#portfolioModal4" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Aplikasi Belajar Online</h5>
-                            <p class="card-text text-muted small">Karya: Maya Indah | Angkatan: 2023</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">Flutter</span>
-                                    <span class="badge bg-light text-dark me-1">Firebase</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 5 -->
-                <div class="col-md-6 col-lg-4 portfolio-item video">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 5">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>Motion Graphic Edukasi</h5>
-                                    <p class="text-white mb-0">Video & Animasi</p>
-                                    <a href="#portfolioModal5" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Motion Graphic Edukasi</h5>
-                            <p class="card-text text-muted small">Karya: Denny Wijaya | Angkatan: 2024</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">After Effects</span>
-                                    <span class="badge bg-light text-dark">Premiere Pro</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 6 -->
-                <div class="col-md-6 col-lg-4 portfolio-item web-design">
-                    <div class="card border-0 shadow-sm h-100">
-                        <div class="portfolio-img position-relative overflow-hidden">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" class="card-img-top"
-                                alt="Portfolio 6">
-                            <div class="portfolio-overlay d-flex align-items-center justify-content-center">
-                                <div class="portfolio-info text-center p-3">
-                                    <h5>Company Profile Website</h5>
-                                    <p class="text-white mb-0">Web Design</p>
-                                    <a href="#portfolioModal6" data-bs-toggle="modal" class="btn btn-light btn-sm mt-2">
-                                        <i class="fas fa-eye me-1"></i> Detail
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Company Profile Website</h5>
-                            <p class="card-text text-muted small">Karya: Rudi Hartono | Angkatan: 2023</p>
-                            <div class="d-flex align-items-center mt-2">
-                                <div class="portfolio-tech">
-                                    <span class="badge bg-light text-dark me-1">Bootstrap</span>
-                                    <span class="badge bg-light text-dark me-1">PHP</span>
-                                    <span class="badge bg-light text-dark">MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Load More Button -->
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <button class="btn btn-lg" style="background-color: var(--primary-color); color: white;">
-                        Lihat Lebih Banyak <i class="fas fa-arrow-down ms-2"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Student Section -->
-    <section id="featured-student" class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-5">
-                    <h2 class="section-title">Siswa Berprestasi</h2>
-                    <p class="text-muted">Mengenal lebih dekat siswa-siswi berprestasi Creative Media</p>
-                </div>
-            </div>
-
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}" alt="Featured Student"
-                        class="img-fluid rounded shadow-lg">
-                </div>
-                <div class="col-lg-6">
-                    <div class="featured-student-content">
-                        <h3 class="mb-3">Nico Robin</h3>
-                        <p class="text-muted mb-3">UI/UX Designer & Frontend Developer</p>
-                        <p>Budi adalah salah satu siswa berprestasi dari program Web Development Creative Media. Selama
-                            belajar di Creative Media, Budi berhasil mengembangkan berbagai proyek website dan aplikasi yang
-                            telah digunakan oleh beberapa bisnis lokal.</p>
-                        <p>Kini Budi bekerja sebagai UI/UX Designer di salah satu startup teknologi terkemuka di Indonesia.
-                        </p>
-
-                        <div class="mt-4">
-                            <h5>Karya Unggulan:</h5>
-                            <ul class="list-group list-group-flush mt-2">
-                                <li class="list-group-item bg-transparent px-0">
-                                    <i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i>
-                                    E-Commerce Platform untuk UMKM
-                                </li>
-                                <li class="list-group-item bg-transparent px-0">
-                                    <i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i> Website
-                                    Edukasi Interaktif
-                                </li>
-                                <li class="list-group-item bg-transparent px-0">
-                                    <i class="fas fa-check-circle me-2" style="color: var(--primary-color);"></i> Aplikasi
-                                    Manajemen Perpustakaan
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endif
         </div>
     </section>
 
@@ -293,7 +106,7 @@
                     <p class="lead mb-4">Bergabunglah dengan Creative Media dan dapatkan pendidikan berkualitas di bidang
                         IT & Multimedia dari pengajar profesional.</p>
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="/contact" class="btn btn-light">Hubungi Kami</a>
+                        <a href="{{ route('contact') }}" class="btn btn-light">Hubungi Kami</a>
                     </div>
                 </div>
             </div>
@@ -301,50 +114,113 @@
     </section>
 
     <!-- Portfolio Modals -->
-    <!-- Portfolio Modal 1 -->
-    <div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModalLabel1"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="portfolioModalLabel1">E-Commerce Fashion Website</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" alt="Portfolio 1"
-                                class="img-fluid mb-3">
+    @if (isset($portfolios) && $portfolios->count() > 0)
+        @foreach ($portfolios as $portfolio)
+            <div class="modal fade" id="portfolioModal{{ $portfolio->id }}" tabindex="-1"
+                aria-labelledby="portfolioModalLabel{{ $portfolio->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="portfolioModalLabel{{ $portfolio->id }}">{{ $portfolio->title }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="col-md-6">
-                            <h5>Detail Project</h5>
-                            <p class="text-muted mb-3">Karya: Budi Santoso | Angkatan: 2024</p>
-                            <p>E-Commerce Fashion Website adalah project akhir dari program Web Development. Website ini
-                                dibangun menggunakan HTML, CSS, dan JavaScript dengan tambahan framework Bootstrap.</p>
-                            <p>Fitur utama website ini termasuk katalog produk, keranjang belanja, proses checkout, dan
-                                sistem review produk.</p>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="{{ asset('storage/' . $portfolio->image) }}" alt="{{ $portfolio->title }}"
+                                        class="img-fluid mb-3">
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Detail Project</h5>
+                                    <p class="text-muted mb-3">Karya: {{ $portfolio->student_name }} | Angkatan:
+                                        {{ $portfolio->batch ?? '-' }}</p>
 
-                            <h5 class="mt-4">Teknologi yang Digunakan</h5>
-                            <div class="d-flex flex-wrap mt-2">
-                                <span class="badge bg-light text-dark me-1 mb-1">HTML</span>
-                                <span class="badge bg-light text-dark me-1 mb-1">CSS</span>
-                                <span class="badge bg-light text-dark me-1 mb-1">JavaScript</span>
-                                <span class="badge bg-light text-dark me-1 mb-1">Bootstrap</span>
-                                <span class="badge bg-light text-dark me-1 mb-1">PHP</span>
-                                <span class="badge bg-light text-dark me-1 mb-1">MySQL</span>
+                                    @if ($portfolio->description)
+                                        <p>{{ $portfolio->description }}</p>
+                                    @endif
+
+                                    @if ($portfolio->details)
+                                        <div class="mt-3">
+                                            {!! $portfolio->details !!}
+                                        </div>
+                                    @endif
+
+                                    <h5 class="mt-4">Teknologi yang Digunakan</h5>
+                                    <div class="d-flex flex-wrap mt-2">
+                                        @if ($portfolio->technologies)
+                                            @foreach ($portfolio->technologies as $tech)
+                                                <span class="badge bg-light text-dark me-1 mb-1">{{ $tech }}</span>
+                                            @endforeach
+                                        @else
+                                            <p class="text-muted small">Tidak ada data teknologi</p>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            @if ($portfolio->demo_link)
+                                <a href="{{ 'https://' . $portfolio->demo_link }}" class="btn btn-outline-dark me-2"
+                                    target="_blank">
+                                    <i class="fas fa-external-link-alt me-1"></i> Lihat Demo
+                                </a>
+                            @endif
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-outline-dark me-2">
-                        <i class="fas fa-external-link-alt me-1"></i> Lihat Demo
-                    </a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        @endforeach
+    @else
+        <!-- Fallback Modals (jika belum ada data) -->
+        <!-- Portfolio Modal 1 -->
+        <div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModalLabel1"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="portfolioModalLabel1">E-Commerce Fashion Website</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ asset('images/portfolio/portfolio-1.jpg') }}" alt="Portfolio 1"
+                                    class="img-fluid mb-3">
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Detail Project</h5>
+                                <p class="text-muted mb-3">Karya: Budi Santoso | Angkatan: 2024</p>
+                                <p>E-Commerce Fashion Website adalah project akhir dari program Web Development. Website ini
+                                    dibangun menggunakan HTML, CSS, dan JavaScript dengan tambahan framework Bootstrap.</p>
+                                <p>Fitur utama website ini termasuk katalog produk, keranjang belanja, proses checkout, dan
+                                    sistem review produk.</p>
+
+                                <h5 class="mt-4">Teknologi yang Digunakan</h5>
+                                <div class="d-flex flex-wrap mt-2">
+                                    <span class="badge bg-light text-dark me-1 mb-1">HTML</span>
+                                    <span class="badge bg-light text-dark me-1 mb-1">CSS</span>
+                                    <span class="badge bg-light text-dark me-1 mb-1">JavaScript</span>
+                                    <span class="badge bg-light text-dark me-1 mb-1">Bootstrap</span>
+                                    <span class="badge bg-light text-dark me-1 mb-1">PHP</span>
+                                    <span class="badge bg-light text-dark me-1 mb-1">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-outline-dark me-2">
+                            <i class="fas fa-external-link-alt me-1"></i> Lihat Demo
+                        </a>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Tambahkan modal fallback lainnya sesuai kebutuhan -->
+    @endif
 @endsection
 
 @section('styles')
@@ -446,6 +322,35 @@
                     });
                 });
             });
+
+            // Load More Button Functionality (jika dibutuhkan)
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                const initialItemsToShow = 6;
+                const itemsToAdd = 3;
+
+                // Sembunyikan item setelah yang ke-6
+                const items = document.querySelectorAll('.portfolio-item');
+                if (items.length > initialItemsToShow) {
+                    for (let i = initialItemsToShow; i < items.length; i++) {
+                        items[i].style.display = 'none';
+                    }
+                }
+
+                let visibleItems = initialItemsToShow;
+                loadMoreBtn.addEventListener('click', function() {
+                    for (let i = visibleItems; i < visibleItems + itemsToAdd && i < items.length; i++) {
+                        items[i].style.display = 'block';
+                    }
+
+                    visibleItems += itemsToAdd;
+
+                    // Sembunyikan tombol jika semua item sudah ditampilkan
+                    if (visibleItems >= items.length) {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                });
+            }
         });
     </script>
 @endsection

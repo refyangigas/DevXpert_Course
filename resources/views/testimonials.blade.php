@@ -25,57 +25,37 @@
                 <div class="col-md-8 mx-auto">
                     <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <!-- Testimonial 1 -->
-                            <div class="carousel-item active">
-                                <div class="testimonial-card text-center p-5 shadow-lg rounded-3">
-                                    <div class="testimonial-image mx-auto mb-4">
-                                        <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}" alt="Testimonial 1"
-                                            class="rounded-circle" width="100">
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p class="fs-5 fst-italic mb-4">"Pelatihan di Creative Media sangat membantu saya
-                                            mengembangkan keterampilan desain grafis. Pengajarnya sangat profesional dan
-                                            sabar dalam membimbing. Saya sekarang bekerja sebagai desainer di perusahaan
-                                            ternama berkat ilmu yang saya dapatkan di sini."</p>
-                                        <h5 class="fw-bold mb-1" style="color: var(--primary-color);">Budi Santoso</h5>
-                                        <p class="small text-muted">Peserta Kursus Desain Grafis</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial 2 -->
-                            <div class="carousel-item">
-                                <div class="testimonial-card text-center p-5 shadow-lg rounded-3">
-                                    <div class="testimonial-image mx-auto mb-4">
-                                        <img src="{{ asset('images/testimonials/testimonial-2.png') }}" alt="Testimonial 2"
-                                            class="rounded-circle" width="100">
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p class="fs-5 fst-italic mb-4">"Website yang dikembangkan oleh tim Creative Media
-                                            sangat membantu bisnis kami. Tampilan yang profesional dan responsif membuat
-                                            pengunjung website kami meningkat 200% dalam 3 bulan pertama setelah
-                                            peluncuran."</p>
-                                        <h5 class="fw-bold mb-1" style="color: var(--primary-color);">Linda Wijaya</h5>
-                                        <p class="small text-muted">CEO, PT. Maju Bersama</p>
+                            @forelse($featuredTestimonials as $index => $testimonial)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <div class="testimonial-card text-center p-5 shadow-lg rounded-3">
+                                        <div class="testimonial-image mx-auto mb-4">
+                                            @if ($testimonial->image ?? null)
+                                                <img src="{{ asset('storage/' . $testimonial->image) }}"
+                                                    alt="{{ $testimonial->name }}" class="rounded-circle" width="100">
+                                            @else
+                                                <img src="{{ asset('images/testimonials/user-1.jpg') }}"
+                                                    alt="{{ $testimonial->name ?? 'Default' }}" class="rounded-circle"
+                                                    width="100">
+                                            @endif
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <p class="fs-5 fst-italic mb-4">
+                                                "{{ $testimonial->content ?? 'Belum ada testimonial saat ini.' }}"</p>
+                                            <h5 class="fw-bold mb-1" style="color: var(--primary-color);">
+                                                {{ $testimonial->name ?? 'Sample Name' }}</h5>
+                                            <p class="small text-muted">{{ $testimonial->position ?? 'Sample Position' }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Testimonial 3 -->
-                            <div class="carousel-item">
-                                <div class="testimonial-card text-center p-5 shadow-lg rounded-3">
-                                    <div class="testimonial-image mx-auto mb-4">
-                                        <img src="{{ asset('images/testimonials/user-2.png') }}" alt="Testimonial 3"
-                                            class="rounded-circle" width="100">
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p class="fs-5 fst-italic mb-4">"Berbeda dengan tempat kursus lainnya, Creative
-                                            Media benar-benar memberikan jaminan sampai bisa. Saya yang awalnya gagap
-                                            teknologi kini mampu membuat aplikasi sederhana berkat kesabaran para pengajar."
-                                        </p>
-                                        <h5 class="fw-bold mb-1" style="color: var(--primary-color);">Ahmad Faisal</h5>
-                                        <p class="small text-muted">Peserta Kursus Programming</p>
+                            @empty
+                                <div class="carousel-item active">
+                                    <div class="testimonial-card text-center p-5 shadow-lg rounded-3">
+                                        <p>Belum ada testimonial saat ini. Silahkan tambahkan testimonial melalui panel
+                                            admin.</p>
                                     </div>
                                 </div>
-                            </div>
+                            @endforelse
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
                             data-bs-slide="prev">
@@ -99,139 +79,44 @@
             <h2 class="text-center mb-5">Testimonial Siswa & Klien</h2>
 
             <div class="row g-4">
-                <!-- Grid Testimonial 1 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <img src="{{ asset('images/testimonials/user-1.jpg') }}" alt="User 1"
-                                        class="rounded-circle" width="60">
+                @forelse($gridTestimonials as $testimonial)
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0">
+                                        @if ($testimonial->image ?? null)
+                                            <img src="{{ asset('storage/' . $testimonial->image) }}"
+                                                alt="{{ $testimonial->name }}" class="rounded-circle" width="60">
+                                        @else
+                                            <img src="{{ asset('images/testimonials/user-1.jpg') }}"
+                                                alt="{{ $testimonial->name ?? 'Default' }}" class="rounded-circle"
+                                                width="60">
+                                        @endif
+                                    </div>
+                                    <div class="ms-3">
+                                        <h5 class="card-title mb-1">{{ $testimonial->name ?? 'Sample Name' }}</h5>
+                                        <p class="small text-muted">{{ $testimonial->position ?? 'Sample Position' }}</p>
+                                    </div>
                                 </div>
-                                <div class="ms-3">
-                                    <h5 class="card-title mb-1">Dewi Anggraini</h5>
-                                    <p class="small text-muted">Digital Marketing</p>
+                                <div class="testimonial-rating mb-3">
+                                    @php
+                                        $rating = $testimonial->rating ?? 5;
+                                    @endphp
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i class="fas fa-{{ $i <= $rating ? 'star' : ($i - 0.5 <= $rating ? 'star-half-alt' : 'star') }}"
+                                            style="color: #FFD700;"></i>
+                                    @endfor
                                 </div>
-                            </div>
-                            <div class="testimonial-rating mb-3">
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                            </div>
-                            <p class="card-text">"Materi digital marketing yang diajarkan sangat up-to-date dan praktis
-                                untuk diterapkan. Kini saya mampu mengelola kampanye digital dengan lebih efektif."</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grid Testimonial 2 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <img src="{{ asset('images/testimonials/user-2.png') }}" alt="User 2"
-                                        class="rounded-circle" width="60">
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="card-title mb-1">Hendra Wijaya</h5>
-                                    <p class="small text-muted">Web Development</p>
-                                </div>
-                            </div>
-                            <div class="testimonial-rating mb-3">
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star-half-alt" style="color: #FFD700;"></i>
-                            </div>
-                            <p class="card-text">"Materi web development sangat komprehensif, mulai dari HTML/CSS hingga
-                                framework modern. Sistem belajarnya sangat fleksibel dan mendukung."</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Grid Testimonial 3 -->
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <div class="card-body p-4">
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <img src="{{ asset('images/testimonials/testimonial-1.jpg') }}" alt="User 3"
-                                        class="rounded-circle" width="60">
-                                </div>
-                                <div class="ms-3">
-                                    <h5 class="card-title mb-1">Siti Fatimah</h5>
-                                    <p class="small text-muted">Desain Interior</p>
-                                </div>
-                            </div>
-                            <div class="testimonial-rating mb-3">
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                                <i class="fas fa-star" style="color: #FFD700;"></i>
-                            </div>
-                            <p class="card-text">"Kursus desain interior sangat praktis, dengan tutorial langsung
-                                menggunakan software terkini. Mentor professional dan berpengalaman."</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Corporate Testimonials -->
-    <section id="corporate-testimonials" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Klien Korporat</h2>
-
-            <div class="row g-4">
-                <!-- Corporate Testimonial 1 -->
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-lg h-100">
-                        <div class="row g-0">
-                            <div class="col-md-4 d-flex align-items-center justify-content-center p-3"
-                                style="background-color: var(--primary-color);">
-                                <img src="{{ asset('images/testimonials/company-1.jpg') }}" alt="Company 1"
-                                    class="img-fluid rounded-circle" style="max-width: 120px;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body p-4">
-                                    <h5 class="card-title fw-bold">PT. Global Solutions</h5>
-                                    <p class="card-text fst-italic">"Creative Media telah membantu kami dalam mengembangkan
-                                        website perusahaan dan sistem informasi internal. Hasilnya sangat profesional dan
-                                        sesuai kebutuhan."</p>
-                                    <p class="card-text"><small class="text-muted">- Direktur IT</small></p>
-                                </div>
+                                <p class="card-text">"{{ $testimonial->content ?? 'Belum ada testimonial saat ini.' }}"</p>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Corporate Testimonial 2 -->
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-lg h-100">
-                        <div class="row g-0">
-                            <div class="col-md-4 d-flex align-items-center justify-content-center p-3"
-                                style="background-color: var(--primary-color);">
-                                <img src="{{ asset('images/testimonials/company-2.jpg') }}" alt="Company 2"
-                                    class="img-fluid rounded-circle" style="max-width: 120px;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body p-4">
-                                    <h5 class="card-title fw-bold">CV. Maju Makmur</h5>
-                                    <p class="card-text fst-italic">"Kami sangat puas dengan pelatihan digital marketing
-                                        yang diberikan untuk tim kami. Penjualan online kami meningkat signifikan setelah
-                                        menerapkan strategi yang diajarkan."</p>
-                                    <p class="card-text"><small class="text-muted">- Manager Marketing</small></p>
-                                </div>
-                            </div>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>Belum ada testimonial saat ini. Silahkan tambahkan testimonial melalui panel admin.</p>
                     </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -243,8 +128,8 @@
             <p class="lead mb-4">Bergabunglah dengan ribuan siswa dan klien kami yang telah sukses mengembangkan karir dan
                 bisnis mereka.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="/contact" class="btn btn-lg"
-                    style="background-color: var(--primary-color); color: white;">Daftar Sekarang</a>
+                <a href="/contact" class="btn btn-lg" style="background-color: var(--primary-color); color: white;">Daftar
+                    Sekarang</a>
                 <a href="/contact" class="btn btn-lg btn-outline-light">Hubungi Kami</a>
             </div>
         </div>
@@ -279,11 +164,6 @@
         .testimonial-image img {
             border: 3px solid var(--primary-color);
             padding: 2px;
-        }
-
-        #corporate-testimonials .card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
         }
     </style>
 @endsection

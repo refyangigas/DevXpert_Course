@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TestimonialController; // Memastikan controller terimport dengan benar
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,13 @@ use App\Http\Controllers\TrainingController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/vision-mission', [HomeController::class, 'visionMission'])->name('vision-mission');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/portfolio', [HomeController::class, 'portfolio'])->name('portfolio');
-Route::get('/testimonials', [HomeController::class, 'testimonials'])->name('testimonials');
+
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials');
+
+// Contact Route
+Route::get('/contact', [ContactController::class, 'index'])->name('contact'); // Tambahkan route untuk halaman contact
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit'); // Hanya satu route submit
 
 // Training Routes
 Route::prefix('training')->group(function () {
@@ -31,15 +38,14 @@ Route::prefix('training')->group(function () {
     Route::get('/mobile', [TrainingController::class, 'mobile'])->name('training.mobile');
 });
 
-// Article Routes
-Route::get('/articles', [HomeController::class, 'articles'])->name('articles');
-Route::get('/articles/search', [HomeController::class, 'articlesSearch'])->name('articles.search');
-Route::get('/article/{slug}', [HomeController::class, 'articleDetail'])->name('article.detail');
+// Routes untuk artikel
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/search', [ArticleController::class, 'search'])->name('articles.search');
+Route::get('/articles/category/{slug}', [ArticleController::class, 'byCategory'])->name('articles.category');
+Route::get('/articles/tag/{slug}', [ArticleController::class, 'byTag'])->name('articles.tag');
+Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 // Info Routes
 Route::get('/info', function () {
     return view('info');
 })->name('info');
-
-// Contact Form Submission
-Route::post('/contact/submit', [App\Http\Controllers\ContactController::class, 'submit'])->name('contact.submit');
